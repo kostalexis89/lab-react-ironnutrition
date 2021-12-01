@@ -2,6 +2,7 @@
 import "./App.css";
 import React, { useState } from 'react'
 import foodsData from "./foods.json";
+import FoodBox from "./FoodBox";
 
 function App() {
   const setInitialValue = () => {
@@ -10,15 +11,16 @@ function App() {
   const [foods, setFoods] = useState(() => setInitialValue())
   const foodsList = foods.map(food => {
     return (
-      <div>
-         <p> {food.name} </p>
-         <img src={food.image} width={'200px'} />
-      </div>
+      // <div>
+      //    <p> {food.name} </p>
+      //    <img src={food.image} width={'200px'} />
+      // </div>
+      <FoodBox food={food}/>
     )
   })
-  return <div className="App">
+  return <>
     <h3>Food list</h3>
     {foodsList}
-  </div>;
+  </>;
 }
 export default App;
