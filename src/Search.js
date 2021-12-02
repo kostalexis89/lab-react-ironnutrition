@@ -15,7 +15,7 @@ export default function Search({searchFood}) {
     
     return (
         <div>
-        <Input value={query} type="text" onChange={queryHandler}/>
+        <Input value={query} type="text" onChange={queryHandler} placeholder='Search for a food'/>
         </div>
     )
 }

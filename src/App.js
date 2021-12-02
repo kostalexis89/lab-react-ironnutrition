@@ -6,12 +6,14 @@ import foodsData from "./foods.json";
 import FoodBox from "./FoodBox";
 import AddFoodForm from "./AddFoodForm";
 import Search from "./Search";
+import { Button } from "antd";
 
 function App() {
   const setInitialValue = () => {
     return foodsData
   }
   const [foods, setFoods] = useState(() => setInitialValue())
+  const [hide, setHide] = useState(true)
 
   const addNewFood = (newFood) => {
     // console.log('the new food is here')
@@ -20,6 +22,11 @@ function App() {
     foodsData.push(newFood)
   }
  
+  const handleHide = () => {
+    // console.log('I am handling the Form')
+    setHide(!hide)
+  }
+  console.log(hide)
 
  const searchFood = (searchText) => {
    setFoods(
@@ -48,9 +55,11 @@ function App() {
     )
   })
   return <>
-    <AddFoodForm addNewFood={addNewFood}/>
+    {hide && <AddFoodForm addNewFood={addNewFood} hide={hide}/>}
+    {hide && <Button id='hide' type="primary" onClick={handleHide}> Hide Form </Button> || <Button id='hide' type="primary" onClick={handleHide}> Show Form </Button>}
+
     <Search searchFood={searchFood}/>
-    <h3>Food list</h3>
+    <h3 id='food-list'>Food list</h3>
     <div className='container'>
     {foodsList}
     </div>

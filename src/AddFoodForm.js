@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import "antd/dist/antd.css";
 import { Input, Divider } from "antd";
 
-export default function AddFoodForm({addNewFood}) {
+export default function AddFoodForm(props) {
     const setInitialValue = () => {
         return ''
     }
@@ -32,11 +32,13 @@ export default function AddFoodForm({addNewFood}) {
          calories: calories,
          servings: servings,
         };
-        addNewFood(newFood)
+        props.addNewFood(newFood)
         
     }
+
+    
     return (
-            <form onSubmit={handleSubmit}>
+            <form id='formId' onSubmit={handleSubmit}>
             <Divider>Add Food Entry</Divider>
             <Input value={name} type="text" onChange={nameHandler} placeholder='Name'/>
             <Input value={image} type="text" onChange={imageHandler} placeholder='Image Url'/>
