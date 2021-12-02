@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, Col, Divider, Button } from "antd";
+import "antd/dist/antd.css";
 
 export default function FoodBox({food}) {
     
