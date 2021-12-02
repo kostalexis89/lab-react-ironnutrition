@@ -29,9 +29,22 @@ function App() {
    )
  }
 
+  const deleteFood = (props) => {
+    setFoods(
+      foods.filter((f) => {
+        if(f.name===props){
+          return false
+        } else {
+          return true
+        }
+      } 
+     )
+    )
+  }
+
   const foodsList = foods.map(food => {
     return (  
-      <FoodBox food={food}/>    
+      <FoodBox food={food} deleteFood={deleteFood}/>    
     )
   })
   return <>
