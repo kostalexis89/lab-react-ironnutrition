@@ -14,6 +14,7 @@ function App() {
   }
   const [foods, setFoods] = useState(() => setInitialValue())
   const [hide, setHide] = useState(true)
+  const [query, setQuery] = useState('')
 
   const addNewFood = (newFood) => {
     // console.log('the new food is here')
@@ -29,12 +30,13 @@ function App() {
   console.log(hide)
 
  const searchFood = (searchText) => {
-   setFoods(
-     foodsData.filter((f) => 
-      f.name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()) 
-    )
-   )
+  
+  setQuery(searchText)
  }
+
+ let results = foods.filter(function(food){
+   return food.name.toLocaleLowerCase().includes(query.toLocaleLowerCase()) 
+ })
 
   const deleteFood = (props) => {
     setFoods(
@@ -48,8 +50,8 @@ function App() {
      )
     )
   }
-
-  const foodsList = foods.map(food => {
+  console.log(foods.length)
+  const foodsList = results.map(food => {
     return (  
       <FoodBox food={food} deleteFood={deleteFood}/>    
     )
@@ -58,10 +60,11 @@ function App() {
     {hide && <AddFoodForm addNewFood={addNewFood} hide={hide}/>}
     {hide && <Button id='hide' type="primary" onClick={handleHide}> Hide Form </Button> || <Button id='hide' type="primary" onClick={handleHide}> Show Form </Button>}
 
-    <Search searchFood={searchFood}/>
+    <Search searchFood={searchFood} query={query}/>
     <h3 id='food-list'>Food list</h3>
     <div className='container'>
     {foodsList}
+    {foods.length===0 && <h1>There is nothing to show</h1>}
     </div>
   </>;
 }
