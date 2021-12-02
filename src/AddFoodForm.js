@@ -33,6 +33,7 @@ export default function AddFoodForm({addNewFood}) {
          servings: servings,
         };
         addNewFood(newFood)
+        
     }
     return (
             <form onSubmit={handleSubmit}>
